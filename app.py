@@ -64,8 +64,16 @@ text_splitter = RecursiveCharacterTextSplitter(
 chunks = text_splitter.split_text(clean_text)
 chunks = [deduplicate_sentences(chunk) for chunk in chunks]
 
-device = "cpu"  # Force CPU
-embed_model = SentenceTransformer('all-MiniLM-L6-v2', device=device)
+import torch
+from sentence_transformers import SentenceTransformer
+
+# Force CPU globally
+torch_device = torch.device("cpu")
+
+# Load model on CPU
+embed_model = SentenceTransformer('all-MiniLM-L6-v2')
+embed_model.to(torch_device)
+
 embeddings = embed_model.encode(chunks, show_progress_bar=True)
 
 dimension = embeddings.shape[1]
