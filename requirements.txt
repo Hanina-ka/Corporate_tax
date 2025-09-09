@@ -1,6 +1,6 @@
-streamlit
-pdfplumber
-sentence-transformers
-faiss-cpu
-transformers
-langchain
+sentence-transformers==2.2.2
+torch==2.1.0
+transformers==4.32.0
+pdfplumber==0.10.1
+faiss-cpu==1.7.4
+streamlit==1.26.0
