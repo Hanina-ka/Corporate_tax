@@ -16,7 +16,7 @@ from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
 import streamlit as st
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 
-pdf_file = "/content/Small Business Relief Guide - EN - 29 08 2023.pdf"  # Replace with your PDF path
+pdf_file = "Small Business Relief Guide - EN - 29 08 2023.pdf"  # Replace with your PDF path
 raw_text = ""
 
 with pdfplumber.open(pdf_file) as pdf:
