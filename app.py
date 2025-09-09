@@ -11,6 +11,7 @@ import pdfplumber
 import re
 import numpy as np
 from sentence_transformers import SentenceTransformer
+import torch
 import faiss
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer, pipeline
 import streamlit as st
@@ -63,7 +64,8 @@ text_splitter = RecursiveCharacterTextSplitter(
 chunks = text_splitter.split_text(clean_text)
 chunks = [deduplicate_sentences(chunk) for chunk in chunks]
 
-embed_model = SentenceTransformer('all-MiniLM-L6-v2')
+device = "cpu"  # Force CPU
+embed_model = SentenceTransformer('all-MiniLM-L6-v2', device=device)
 embeddings = embed_model.encode(chunks, show_progress_bar=True)
 
 dimension = embeddings.shape[1]
